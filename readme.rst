@@ -1,5 +1,5 @@
 ###################
-Datatable Server Side With CodeIgniter load page with jQuery
+Datatable Serverside With CodeIgniter / jQuery Load Page
 ###################
 
 CodeIgniter is an Application Development Framework - a toolkit - for people
