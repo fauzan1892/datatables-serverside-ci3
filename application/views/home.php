@@ -20,9 +20,7 @@
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <!-- BOOTSTRAP 4-->
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    <!-- MAGNIFIC POPUP-->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
-    
+   
   </head>
   <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
