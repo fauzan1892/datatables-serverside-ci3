@@ -35,8 +35,11 @@
         {
             $tables = "artikel";
             $search = array('judul','kategori','penulis','tgl_posting');
+            // jika memakai IS NULL pada where sql
+            $isWhere = null;
+            // $isWhere = 'artikel.deleted_at IS NULL';
             header('Content-Type: application/json');
-            echo $this->M_Datatables->get_tables($tables,$search);
+            echo $this->M_Datatables->get_tables($tables,$search,$isWhere);
         }
 
         function view_data_where()
@@ -44,8 +47,11 @@
             $tables = "artikel";
             $search = array('judul','kategori','penulis','tgl_posting');
             $where  = array('kategori' => 'php');
+            // jika memakai IS NULL pada where sql
+            $isWhere = null;
+            // $isWhere = 'artikel.deleted_at IS NULL';
             header('Content-Type: application/json');
-            echo $this->M_Datatables->get_tables_where($tables,$search,$where);
+            echo $this->M_Datatables->get_tables_where($tables,$search,$where,$isWhere);
         }
 
         function view_data_query()
@@ -55,8 +61,12 @@
             $search = array('nama_kategori','subkat','tgl_add');
             $where  = null; 
             // $where  = array('nama_kategori' => 'Tutorial');
+            
+            // jika memakai IS NULL pada where sql
+            $isWhere = null;
+            // $isWhere = 'artikel.deleted_at IS NULL';
             header('Content-Type: application/json');
-            echo $this->M_Datatables->get_tables_query($query,$search,$where);
+            echo $this->M_Datatables->get_tables_query($query,$search,$where,$isWhere);
         }
     }
 ?>

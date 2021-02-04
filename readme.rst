@@ -3,14 +3,17 @@ Datatable Serverside With CodeIgniter / jQuery Load Page
 *******************
 
 Contoh Source Code menggunakan Datatables Serverside dengan CodeIgniter 3
- 
-*******************
-Server Requirements
-*******************
 
-PHP version 5.6 or newer is recommended.
+Fitur :
+- SQL tanpa query Builder
+- Fitur Where
+- Fitur IS Where
+- Search berdasarkan kolom tabel
+- Relasi Antar Table tanpa query Builder
+- Support CSRF token datatables 
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+Artikel Datatables Tanpa CSRF : https://www.codekop.com/read/tutorial-cara-membuat-datatables-serverside-dengan-codeigniter.html 
 
+Artikel Datatables dengan CSRF : Coming Soon
+
+Keterangan : Hanya digunakan untuk SQL tanpa Query Builder Bawaan
