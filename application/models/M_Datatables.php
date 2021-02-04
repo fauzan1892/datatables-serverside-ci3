@@ -263,7 +263,7 @@
             return json_encode($callback); // Convert array $callback ke json
         }
 
-        function get_tables_query_csrf($query,$cari, $where,$csrf_name, $csrf_hash)
+        function get_tables_query_csrf($query,$cari, $where,$csrf_name, $isWhere, $csrf_hash)
         {
             // Ambil data yang di ketik user pada textbox pencarian
             $search = htmlspecialchars($_POST['search']['value']);
@@ -281,8 +281,12 @@
                 }
     
                 $fwhere = implode(' AND ', $setWhere);
-
-                $sql = $this->db->query($query." WHERE ".$fwhere);
+                if(!empty($iswhere))
+                {
+                    $sql = $this->db->query($query." WHERE  $iswhere ".$fwhere);
+                }else{
+                    $sql = $this->db->query($query." WHERE ".$fwhere);
+                }
                 $sql_count = $sql->num_rows();
     
                 $cari = implode(" LIKE '%".$search."%' OR ", $cari)." LIKE '%".$search."%'";
@@ -294,14 +298,30 @@
                 $order_ascdesc = $_POST['order'][0]['dir']; 
                 $order = " ORDER BY ".$_POST['columns'][$order_field]['data']." ".$order_ascdesc;
     
-                $sql_data = $this->db->query($query." WHERE ".$fwhere." AND (".$cari.")".$order." LIMIT ".$limit." OFFSET ".$start);
-                $sql_filter = $this->db->query($query." WHERE ".$fwhere);
+                if(!empty($iswhere))
+                {
+                    $sql_data = $this->db->query($query." WHERE $iswhere ".$fwhere." AND (".$cari.")".$order." LIMIT ".$limit." OFFSET ".$start);
+                }else{
+                    $sql_data = $this->db->query($query." WHERE ".$fwhere." AND (".$cari.")".$order." LIMIT ".$limit." OFFSET ".$start);
+
+                }
 
                 if(isset($search))
                 {
-                    $sql_cari =  $this->db->query($query." WHERE ".$fwhere." AND (".$cari.")");
+                    if(!empty($iswhere))
+                    {
+                        $sql_cari =  $this->db->query($query." WHERE $iswhere ".$fwhere." AND (".$cari.")");
+                    }else{
+                        $sql_cari =  $this->db->query($query." WHERE ".$fwhere." AND (".$cari.")");
+                    }
                     $sql_filter_count = $sql_cari->num_rows();
                 }else{
+                    if(!empty($iswhere))
+                    {
+                        $sql_filter = $this->db->query($query." WHERE $iswhere ".$fwhere);
+                    }else{
+                        $sql_filter = $this->db->query($query." WHERE ".$fwhere);
+                    }
                     $sql_filter_count = $sql_filter->num_rows();
                 }
 
@@ -309,7 +329,13 @@
 
             }else{
 
-                $sql = $this->db->query($query);
+                if(!empty($iswhere))
+                {
+                    $sql = $this->db->query($query."WHERE $isWhere");
+                }else{
+                    $sql = $this->db->query($query);
+                }
+
                 $sql_count = $sql->num_rows();
     
                 $cari = implode(" LIKE '%".$search."%' OR ", $cari)." LIKE '%".$search."%'";
@@ -320,15 +346,32 @@
                 // Untuk menentukan order by "ASC" atau "DESC"
                 $order_ascdesc = $_POST['order'][0]['dir']; 
                 $order = " ORDER BY ".$_POST['columns'][$order_field]['data']." ".$order_ascdesc;
-    
-                $sql_data = $this->db->query($query." WHERE (".$cari.")".$order." LIMIT ".$limit." OFFSET ".$start);
-                $sql_filter = $this->db->query($query);
+
+                if(!empty($iswhere))
+                {
+                    $sql_data = $this->db->query($query." WHERE $isWhere (".$cari.")".$order." LIMIT ".$limit." OFFSET ".$start);
+                }else{
+                    $sql_data = $this->db->query($query." WHERE (".$cari.")".$order." LIMIT ".$limit." OFFSET ".$start);
+                }
                 
                 if(isset($search))
                 {
-                    $sql_cari =  $this->db->query($query." WHERE (".$cari.")");
+                    if(!empty($iswhere))
+                    {
+                        $sql_cari =  $this->db->query($query." WHERE $isWhere (".$cari.")");
+                    }else{
+                        $sql_cari =  $this->db->query($query." WHERE (".$cari.")");
+                    }
                     $sql_filter_count = $sql_cari->num_rows();
                 }else{
+
+                    if(!empty($iswhere))
+                    {
+                        $sql_filter =  $this->db->query($query." WHERE $isWhere");
+                    }else{
+                        $sql_filter = $this->db->query($query);
+                    }
+
                     $sql_filter_count = $sql_filter->num_rows();
                 }
 
