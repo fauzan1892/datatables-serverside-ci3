@@ -263,7 +263,7 @@
             return json_encode($callback); // Convert array $callback ke json
         }
 
-        function get_tables_query_csrf($query,$cari, $where,$csrf_name, $isWhere, $csrf_hash)
+        function get_tables_query_csrf($query,$cari,$where,$isWhere,$csrf_name,$csrf_hash)
         {
             // Ambil data yang di ketik user pada textbox pencarian
             $search = htmlspecialchars($_POST['search']['value']);

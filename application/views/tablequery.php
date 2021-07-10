@@ -4,14 +4,12 @@
         <h4> SQL Query With Join</h4>
     </div>
     <div class="card-body">
-        <table class="table table-striped table-bordered" id="table-artikel-where">
+        <table class="table table-striped table-bordered" id="table-artikel-query">
             <thead>
                 <tr>
                     <th> No. </th>
-                    <th> Judul Artikel</th>
                     <th> Kategori </th>
-                    <th> Penulis </th>
-                    <th> Tanggal Posting </th>
+                    <th> Sub Kategori </th>
                     <th> Aksi </th>
                 </tr>
             </thead>
@@ -24,7 +22,7 @@
 <script>
     var tabel = null;
     $(document).ready(function() {
-        tabel = $('#table-artikel-where').DataTable({
+        tabel = $('#table-artikel-query').DataTable({
             "processing": true,
             "responsive":true,
             "serverSide": true,
@@ -32,22 +30,20 @@
             "order": [[ 0, 'asc' ]], // Default sortingnya berdasarkan kolom / field ke 0 (paling pertama)
             "ajax":
             {
-                "url": "<?= base_url('datatables/view_data_where');?>", // URL file untuk proses select datanya
+                "url": "<?= base_url('datatables/view_data_query');?>", // URL file untuk proses select datanya
                 "type": "POST"
             },
             "deferRender": true,
             "aLengthMenu": [[5, 10, 50],[ 5, 10, 50]], // Combobox Limit
             "columns": [
-                {"data": 'id_artikel',"sortable": false, 
+                {"data": 'id_kategori',"sortable": false, 
                     render: function (data, type, row, meta) {
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }  
                 },
-                { "data": "judul" }, // Tampilkan judul
-                { "data": "kategori" },  // Tampilkan kategori
-                { "data": "penulis" },  // Tampilkan penulis
-                { "data": "tgl_posting" },  // Tampilkan tgl posting
-                { "data": "id_artikel",
+                { "data": "nama_kategori" },  // Tampilkan kategori
+                { "data": "subkat" },  // Tampilkan nama sub kategori
+                { "data": "id_kategori",
                 "render": 
                 function( data, type, row, meta ) {
                     return '<a href="show/'+data+'">Show</a>';

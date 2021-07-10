@@ -20,7 +20,7 @@
     <body>
         <nav class="navbar navbar-expand-sm navbar-dark bg-info">
             <div class="container">
-                <a class="navbar-brand" href="#">DS CodeIgniter <?php echo CI_VERSION; ?></a>
+                <a class="navbar-brand" href="<?= base_url('/');?>">DS CodeIgniter <?php echo CI_VERSION; ?></a>
                 <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars text-white"></i>
@@ -34,7 +34,10 @@
                             <a class="nav-link" href="javascript:void(0)" onclick="mytablewhere()">Table Where</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" onclick="mytablequery()">Tables With SQL JOIN Query</a>
+                            <a class="nav-link" href="javascript:void(0)" onclick="mytablequery()">Tables With SQL Query</a>
+                        </li>
+                        <li class="nav-item" style="background:#48a89c;color:#fff;">
+                            <a class="nav-link text-white" href="<?= base_url('csrf');?>">CSRF Examples</a>
                         </li>
                     </ul>
                 </div>
